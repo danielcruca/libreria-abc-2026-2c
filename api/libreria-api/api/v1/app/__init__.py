@@ -2,16 +2,16 @@ from flask import Flask
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 import os
+from dotenv import load_dotenv #acá
 
 mongo = PyMongo()
 
 def create_app():
-
+    load_dotenv()  # Carga las variables de entorno desde el archivo .env
     app = Flask(__name__)
     # URI en formato string (correcto)
   
-    uri = ''
-    app.config["MONGO_URI"] = uri
+    app.config["MONGO_URI"] = os.getenv("MONGO_URI")
     mongo.init_app(app)
     CORS(app, origins="*")
 

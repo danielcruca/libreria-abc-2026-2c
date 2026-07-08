@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from app.models.reportesVentas import ReportesVentas
-from app.utils.token import token_requerido
+from app.utils.token import validar_token
 
 reporteVentas_endpoints = Blueprint('reporteVentas_endpoints', __name__)
 

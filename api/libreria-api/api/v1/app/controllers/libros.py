@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from app.models.libro import LibroModel
-from app.utils.token import token_requerido
+from app.utils.token import validar_token
 
 libros_endpoints = Blueprint('libros_endpoints', __name__)
  
@@ -8,9 +8,10 @@ libros_endpoints = Blueprint('libros_endpoints', __name__)
 # Ejemplo de endpoint:
 # http://127.0.0.1:5000/libreria/api/v1/libros?id=6823e02cea9cb5e5156c4bd3
 # http://127.0.0.1:5000/libreria/api/v1/libros
-
+@libros_endpoints.before_request
+def verificar_seguridad():
+    return validar_token()
 @libros_endpoints.route('/libros', methods=['GET'])
-#@token_requerido
 def obtenerLibros():
     
     idLibro = request.args.get('id')
