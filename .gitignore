@@ -42,3 +42,4 @@ data/
 *.sqlite3
 /api/libreria-api/api/v1/app/__pycache__
 *.pyc
+/front-end/ejemplo-react/node_modules
