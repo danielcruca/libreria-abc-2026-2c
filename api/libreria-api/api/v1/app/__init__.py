@@ -18,10 +18,12 @@ def create_app():
     from .controllers.libros import libros_endpoints
     from .controllers.reporteVentas import reporteVentas_endpoints
     from .controllers.home import home_endpoints
+    from .controllers.usuarios import usuarios_endpoints
 
     app.register_blueprint(home_endpoints)
     app.register_blueprint(libros_endpoints, url_prefix="/libreria/api/v1")
     app.register_blueprint(reporteVentas_endpoints, url_prefix="/libreria/api/v1")
+    app.register_blueprint(usuarios_endpoints, url_prefix="/libreria/api/v1")
     
 
     return app

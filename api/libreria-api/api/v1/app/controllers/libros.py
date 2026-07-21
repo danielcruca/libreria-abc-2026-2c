@@ -8,9 +8,9 @@ libros_endpoints = Blueprint('libros_endpoints', __name__)
 # Ejemplo de endpoint:
 # http://127.0.0.1:5000/libreria/api/v1/libros?id=6823e02cea9cb5e5156c4bd3
 # http://127.0.0.1:5000/libreria/api/v1/libros
-@libros_endpoints.before_request
-def verificar_seguridad():
-    return validar_token()
+#libros_endpoints.before_request
+#def verificar_seguridad():
+ #   return validar_token()
 @libros_endpoints.route('/libros', methods=['GET'])
 def obtenerLibros():
     
@@ -79,3 +79,15 @@ def eliminarLibro(id):
         return jsonify({"error": "Libro no eliminado."}), 404
 
     return jsonify({"mensaje": f"Libro con el id {id} ha sido eliminado correctamente."}), 200
+
+@libros_endpoints.route('/libros/<id>', methods=['GET'])
+def obtenerLibro(id):
+
+    libro = LibroModel.obtener_por_id(id)
+
+    if libro is None:
+        return jsonify({
+            "error": "Libro no encontrado"
+        }), 404
+
+    return jsonify(libro), 200
